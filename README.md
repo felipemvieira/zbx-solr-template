@@ -1,5 +1,5 @@
 # Zabbix Template Solr statistics
-Template for monitoring Solr using JSON statistics.
+Template for monitoring Apache Solr using JSON statistics.
 
 # Versions
 I tested this using zabbix 5.0.9 and Solr 8.6.3, but maybe it works with different versions.

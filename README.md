@@ -7,7 +7,7 @@ I tested this using zabbix 5.0.9 and Solr 8.6.3, but maybe it works with differe
 # Requirements
 Zabbix version > 4.2 because template is using HTTP agent and JSON Path. 
 You need to setup user and password for accessing Solr statistics JSON:
-http://{USERNAME}@{PASSWORD}:{HOSTNAME}/solr/admin/metrics
+* http://{USERNAME}@{PASSWORD}:{HOSTNAME}/solr/admin/metrics
 
 # Installation
 * Download Zabbix template

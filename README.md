@@ -13,6 +13,6 @@ You need to setup user and password for accessing Solr statistics JSON:
 * Download Zabbix template
   * https://raw.githubusercontent.com/felipemvieira/zbx-solr-template/main/Template_App_Solr.xml
 * Import the template on Zabbix
-* Create host on Zabbix and apply the template (I have configured to connect to DNS name, because it will used in {HOST.CONN})
+* Create host on Zabbix and apply the template (I have configured to connect to DNS name, because it will be used in {HOST.CONN})
 * On host configuration, modify macros {$SOLR_USERNAME} and {$SOLR_PASSWORD} with the information you created.
 * You can change macros {$PROTOCOL}, {$URI} from host and/or template to your environment

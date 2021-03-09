@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2021-03-02T14:52:31Z</date>
+    <date>2021-03-09T15:52:24Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -11,7 +11,9 @@
         <template>
             <template>Template App Solr</template>
             <name>Template App Solr</name>
-            <description>Template for monitoring Solr using json statistics.</description>
+            <description>Template for monitoring Solr using json statistics.&#13;
+&#13;
+http://{USERNAME}@{PASSWORD}:{HOST.CONN}/solr/admin/metrics</description>
             <groups>
                 <group>
                     <name>Templates/Applications</name>
@@ -41,7 +43,6 @@
                             <expression>{max(300)}=0</expression>
                             <name>SOLR is not running</name>
                             <priority>HIGH</priority>
-                            <description>Le service Solr ne fonctionne pas</description>
                         </trigger>
                     </triggers>
                 </item>
@@ -63,7 +64,21 @@
                             <params>$.['metrics']['solr.jvm']</params>
                         </step>
                     </preprocessing>
-                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}?group=solr.jvm</url>
+                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}</url>
+                    <query_fields>
+                        <query_field>
+                            <name>group</name>
+                            <value>solr.jvm</value>
+                        </query_field>
+                        <query_field>
+                            <name>wt</name>
+                            <value>json</value>
+                        </query_field>
+                        <query_field>
+                            <name>compact</name>
+                            <value>true</value>
+                        </query_field>
+                    </query_fields>
                 </item>
                 <item>
                     <name>Solr: JVM memory heap commited</name>
@@ -755,7 +770,41 @@
                                     <params>$.['metrics']['solr.core.{#CORENAME}']</params>
                                 </step>
                             </preprocessing>
-                            <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}?group=solr.core.{#CORENAME}&amp;prefix=UPDATE&amp;prefix=CACHE&amp;prefix=QUERY&amp;prefix=SEARCHER&amp;prefix=INDEX</url>
+                            <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}</url>
+                            <query_fields>
+                                <query_field>
+                                    <name>group</name>
+                                    <value>solr.core.{#CORENAME}</value>
+                                </query_field>
+                                <query_field>
+                                    <name>prefix</name>
+                                    <value>UPDATE</value>
+                                </query_field>
+                                <query_field>
+                                    <name>prefix</name>
+                                    <value>CACHE</value>
+                                </query_field>
+                                <query_field>
+                                    <name>prefix</name>
+                                    <value>QUERY</value>
+                                </query_field>
+                                <query_field>
+                                    <name>prefix</name>
+                                    <value>SEARCHER</value>
+                                </query_field>
+                                <query_field>
+                                    <name>prefix</name>
+                                    <value>INDEX</value>
+                                </query_field>
+                                <query_field>
+                                    <name>wt</name>
+                                    <value>json</value>
+                                </query_field>
+                                <query_field>
+                                    <name>compact</name>
+                                    <value>true</value>
+                                </query_field>
+                            </query_fields>
                         </item_prototype>
                         <item_prototype>
                             <name>Solr: Core {#CORENAME} index - size</name>
@@ -1101,7 +1150,21 @@
                             </graph_items>
                         </graph_prototype>
                     </graph_prototypes>
-                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}?prefix=CORE.coreName</url>
+                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}</url>
+                    <query_fields>
+                        <query_field>
+                            <name>prefix</name>
+                            <value>CORE.coreName</value>
+                        </query_field>
+                        <query_field>
+                            <name>wt</name>
+                            <value>json</value>
+                        </query_field>
+                        <query_field>
+                            <name>compact</name>
+                            <value>true</value>
+                        </query_field>
+                    </query_fields>
                     <preprocessing>
                         <step>
                             <type>JSONPATH</type>

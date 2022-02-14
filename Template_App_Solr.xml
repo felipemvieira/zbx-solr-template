@@ -64,7 +64,7 @@ http://{USERNAME}@{PASSWORD}:{HOST.CONN}/solr/admin/metrics</description>
                             <params>$.['metrics']['solr.jvm']</params>
                         </step>
                     </preprocessing>
-                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}</url>
+                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}:{$SOLR_PORT}{$URI}</url>
                     <query_fields>
                         <query_field>
                             <name>group</name>
@@ -770,7 +770,7 @@ http://{USERNAME}@{PASSWORD}:{HOST.CONN}/solr/admin/metrics</description>
                                     <params>$.['metrics']['solr.core.{#CORENAME}']</params>
                                 </step>
                             </preprocessing>
-                            <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}</url>
+                            <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}:{$SOLR_PORT}{$URI}</url>
                             <query_fields>
                                 <query_field>
                                     <name>group</name>
@@ -1150,7 +1150,7 @@ http://{USERNAME}@{PASSWORD}:{HOST.CONN}/solr/admin/metrics</description>
                             </graph_items>
                         </graph_prototype>
                     </graph_prototypes>
-                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}{$URI}</url>
+                    <url>{$PROTOCOL}://{$SOLR_USERNAME}:{$SOLR_PASSWORD}@{HOST.CONN}:{$SOLR_PORT}{$URI}</url>
                     <query_fields>
                         <query_field>
                             <name>prefix</name>
@@ -1193,6 +1193,10 @@ http://{USERNAME}@{PASSWORD}:{HOST.CONN}/solr/admin/metrics</description>
                     <macro>{$PROTOCOL}</macro>
                     <value>http</value>
                 </macro>
+                <macro>
+                    <macro>{$SOLR_PORT}</macro>
+                    <value>80</value>
+                </macro>                
                 <macro>
                     <macro>{$SOLR_PASSWORD}</macro>
                     <value>NEWPASS</value>
